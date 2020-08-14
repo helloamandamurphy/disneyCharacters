@@ -1,7 +1,15 @@
 import React, { Component } from "react";
-import { Image, StyleSheet, View, Text, Button } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import characterData from "./characterData";
+import * as Speech from "expo-speech";
 
 class Character extends React.Component {
   constructor() {
@@ -21,10 +29,16 @@ class Character extends React.Component {
     });
   };
 
+  speak() {
+    Speech.speak(this.state.name);
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Image source={{ uri: this.state.img }} style={styles.image}></Image>
+        <TouchableWithoutFeedback onPress={() => this.speak()}>
+          <Image source={{ uri: this.state.img }} style={styles.image}></Image>
+        </TouchableWithoutFeedback>
 
         <Text style={styles.text}>{this.state.name}</Text>
 
