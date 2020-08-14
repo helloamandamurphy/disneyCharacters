@@ -6,9 +6,11 @@ import {
   Text,
   Button,
   TouchableWithoutFeedback,
+  ImageBackground,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import characterData from "./characterData";
+import background from "./assets/background.jpeg";
 import * as Speech from "expo-speech";
 
 class Character extends React.Component {
@@ -40,20 +42,28 @@ class Character extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={() => this.speak()}>
-          <Image source={{ uri: this.state.img }} style={styles.image}></Image>
-        </TouchableWithoutFeedback>
+      <ImageBackground
+        source={background}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <View style={styles.container}>
+          <TouchableWithoutFeedback onPress={() => this.speak()}>
+            <Image
+              source={{ uri: this.state.img }}
+              style={styles.image}
+            ></Image>
+          </TouchableWithoutFeedback>
 
-        <Text style={styles.text}>{this.state.name}</Text>
+          {/* <Text style={styles.text}>{this.state.name}</Text> */}
 
-        <Button
-          onPress={this.getRandom}
-          title="Shuffle"
-          color="#E90101"
-        ></Button>
-        <StatusBar style="auto" />
-      </View>
+          <Button
+            onPress={this.getRandom}
+            title="Shuffle"
+            color="#E90101"
+          ></Button>
+          <StatusBar style="auto" />
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -61,12 +71,14 @@ class Character extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    borderColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
 
   image: {
+    borderWidth: 15,
+    borderColor: "#fff",
     width: 320,
     height: 320,
   },
