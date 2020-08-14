@@ -30,7 +30,12 @@ class Character extends React.Component {
   };
 
   speak() {
-    Speech.speak(this.state.name);
+    Speech.speak(this.state.name, {
+      voiceIOS: "Kate",
+      language: "English",
+      pitch: 1.3,
+      rate: 0.9,
+    });
   }
 
   render() {
